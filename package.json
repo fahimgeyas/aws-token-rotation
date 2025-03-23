@@ -1,0 +1,28 @@
+{
+  "name": "aws-token-rotation",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node -e \"console.log('Run in AWS Lambda environment')\"",
+    "clean": "rimraf dist",
+    "build": "npm run clean && mkdirp dist && copyfiles src/*.js package.json dist",
+    "install-deps": "npm install --prefix dist --production",
+    "package": "node scripts/build.js",
+    "deploy": "npm run build && npm run install-deps && npm run package"
+  },
+  "keywords": [],
+  "author": "Fahim geyas",
+  "license": "ISC",
+  "description": "AWS Lambda for token rotation with Secrets Manager",
+  "dependencies": {
+    "@aws-sdk/client-secrets-manager": "^3.540.0",
+    "@aws-sdk/credential-provider-node": "^3.540.0",
+    "axios": "^1.6.2"
+  },
+  "devDependencies": {
+    "archiver": "^7.0.1",
+    "copyfiles": "^2.4.1",
+    "mkdirp": "^3.0.1",
+    "rimraf": "^6.0.1"
+  }
+}
